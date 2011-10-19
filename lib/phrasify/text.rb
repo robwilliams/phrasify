@@ -17,10 +17,23 @@ module Phrasify
     # 
     # 
     # @return [Phrasify::Text]
-    def parsed
-      phrases.inject(self) {|string, phrase|
-        string = gsub(phrase.match, phrase.replace)
-      }
+    def parse
+      phrases.inject(self) do |string, phrase|
+        
+        string = string.split(":phrasify:").inject("") do |new_string, part|
+          
+          # If this part of the string has already been matched we won't try
+          # and match it again.
+          if part.include?(":matched:")
+            new_string += part
+          else
+            new_string += part.gsub(
+              phrase.match, 
+              ":phrasify::matched:#{phrase.replace}:matched::phrasify:"
+            )
+          end
+        end
+      end.gsub(":matched:", "").gsub(":phrasify:", "")
     end
     
     ##

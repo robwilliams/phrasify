@@ -1,7 +1,7 @@
 module Phrasify
   class Phrase
     
-    attr_reader :match
+    attr_reader :match, :replace
     
     def initialize(match, replace)
       @match, @replace = match, replace
