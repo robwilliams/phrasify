@@ -1,18 +1,14 @@
 module Phrasify
   class Phrase
     
-    attr_reader :matcher
+    attr_reader :match
     
-    def initialize(matcher)
-      @matcher = matcher
+    def initialize(match, replace)
+      @match, @replace = match, replace
     end
-    
-    def replace
-      "herrpr"
-    end
-    
+        
     def self.search(phrases)
-      [new("fred")]
+      [new("fred", "derf")]
     end
   end
 end
