@@ -17,7 +17,7 @@ module Phrasify
     # 
     # 
     # @return [Phrasify::Text]
-    def parse
+    def parsed
       phrases.inject(self) {|string, phrase|
         string = gsub(phrase.match, phrase.replace)
       }
